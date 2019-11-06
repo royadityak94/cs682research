@@ -1,0 +1,250 @@
+[I 20:05:41.554 NotebookApp] [nb_conda_kernels] enabled, 4 kernels found
+[W 20:05:41.777 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
+[W 20:05:41.777 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using authentication. This is highly insecure and not recommended.
+[I 20:05:41.785 NotebookApp] [nb_conda] enabled
+[I 20:05:41.820 NotebookApp] [nb_anacondacloud] enabled
+[I 20:05:41.858 NotebookApp] \u2713 nbpresent HTML export ENABLED
+[W 20:05:41.858 NotebookApp] \u2717 nbpresent PDF export DISABLED: No module named 'nbbrowserpdf'
+[I 20:05:41.862 NotebookApp] Serving notebooks from local directory: /home/ec2-user/Research/NN/cs682research/jupyter
+[I 20:05:41.862 NotebookApp] 0 active kernels 
+[I 20:05:41.862 NotebookApp] The Jupyter Notebook is running at: http://[all ip addresses on your system]:8888/
+[I 20:05:41.862 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 20:05:41.862 NotebookApp] No web browser found: could not locate runnable browser.
+[W 20:05:43.749 NotebookApp] 404 GET /api/kernels/220cf6fe-80c3-4f9f-9249-71693ee244d2/channels?session_id=7C37E48F4E514DFA89E52DC91F5180E7 (24.91.28.129): Kernel does not exist: 220cf6fe-80c3-4f9f-9249-71693ee244d2
+[W 20:05:43.771 NotebookApp] 404 GET /api/kernels/220cf6fe-80c3-4f9f-9249-71693ee244d2/channels?session_id=7C37E48F4E514DFA89E52DC91F5180E7 (24.91.28.129) 26.72ms referer=None
+[W 20:05:44.639 NotebookApp] 404 GET /api/kernels/79ace9da-1031-47ea-af2e-faaf9959d979/channels?session_id=6DB22BE6D7AC4C2C8717EBA1623762B2 (24.91.28.129): Kernel does not exist: 79ace9da-1031-47ea-af2e-faaf9959d979
+[W 20:05:44.640 NotebookApp] 404 GET /api/kernels/79ace9da-1031-47ea-af2e-faaf9959d979/channels?session_id=6DB22BE6D7AC4C2C8717EBA1623762B2 (24.91.28.129) 2.83ms referer=None
+[W 20:05:44.709 NotebookApp] 404 GET /api/kernels/b1fa95fc-9657-42cc-b922-ba266cf11b48/channels?session_id=A980FD7CC5EF49A8A6EC3CD4A226E8E6 (24.91.28.129): Kernel does not exist: b1fa95fc-9657-42cc-b922-ba266cf11b48
+[W 20:05:44.710 NotebookApp] 404 GET /api/kernels/b1fa95fc-9657-42cc-b922-ba266cf11b48/channels?session_id=A980FD7CC5EF49A8A6EC3CD4A226E8E6 (24.91.28.129) 2.67ms referer=None
+[I 20:05:51.499 NotebookApp] 302 GET / (24.91.28.129) 0.41ms
+[W 20:06:13.026 NotebookApp] 404 GET /api/kernels/a12ccb2f-0245-4fc6-8282-a0edc9223699/channels?session_id=F0A27B7193F740989E0F35EF5B508B0C (24.91.28.129): Kernel does not exist: a12ccb2f-0245-4fc6-8282-a0edc9223699
+[W 20:06:13.027 NotebookApp] 404 GET /api/kernels/a12ccb2f-0245-4fc6-8282-a0edc9223699/channels?session_id=F0A27B7193F740989E0F35EF5B508B0C (24.91.28.129) 2.90ms referer=None
+[W 20:06:16.767 NotebookApp] Replacing stale connection: 79ace9da-1031-47ea-af2e-faaf9959d979:6DB22BE6D7AC4C2C8717EBA1623762B2
+[E 20:06:45.588 NotebookApp] Exception restarting kernel
+    Traceback (most recent call last):
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/notebook/services/kernels/handlers.py", line 88, in post
+        yield gen.maybe_future(km.restart_kernel(kernel_id))
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/notebook/services/kernels/kernelmanager.py", line 109, in restart_kernel
+        self._check_kernel_id(kernel_id)
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/notebook/services/kernels/kernelmanager.py", line 169, in _check_kernel_id
+        raise web.HTTPError(404, u'Kernel does not exist: %s' % kernel_id)
+    tornado.web.HTTPError: HTTP 404: Not Found (Kernel does not exist: a12ccb2f-0245-4fc6-8282-a0edc9223699)
+[E 20:06:45.589 NotebookApp] {
+      "Accept-Language": "en-US,en;q=0.9,hi;q=0.8",
+      "Host": "52.7.231.122:8888",
+      "Origin": "http://52.7.231.122:8888",
+      "Accept-Encoding": "gzip, deflate",
+      "Dnt": "1",
+      "Referer": "http://52.7.231.122:8888/notebooks/LeNet5_Demo.ipynb",
+      "Cookie": "_xsrf=2|356c1f74|a2d54b2f957f53bc4a1e94def9cb24de|1572987863",
+      "Connection": "keep-alive",
+      "Accept": "application/json, text/javascript, */*; q=0.01",
+      "Content-Length": "0",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36",
+      "X-Requested-With": "XMLHttpRequest"
+    }
+[E 20:06:45.589 NotebookApp] 500 POST /api/kernels/a12ccb2f-0245-4fc6-8282-a0edc9223699/restart (24.91.28.129) 1.45ms referer=http://52.7.231.122:8888/notebooks/LeNet5_Demo.ipynb
+[W 20:06:45.631 NotebookApp] Session not found: session_id='4c02ef1d-be28-4921-8f71-9fa1825fa365'
+[W 20:06:45.631 NotebookApp] 404 DELETE /api/sessions/4c02ef1d-be28-4921-8f71-9fa1825fa365 (24.91.28.129) 0.91ms referer=http://52.7.231.122:8888/notebooks/LeNet5_Demo.ipynb
+[W 20:06:46.974 NotebookApp] Session not found: session_id='4c02ef1d-be28-4921-8f71-9fa1825fa365'
+[W 20:06:46.975 NotebookApp] 404 DELETE /api/sessions/4c02ef1d-be28-4921-8f71-9fa1825fa365 (24.91.28.129) 1.35ms referer=http://52.7.231.122:8888/notebooks/LeNet5_Demo.ipynb
+[I 20:06:47.815 NotebookApp] Kernel started: 210a8f67-4684-4977-915a-3017a0950463
+[I 20:07:20.579 NotebookApp] 302 GET / (173.252.79.15) 0.47ms
+[I 20:07:21.037 NotebookApp] 302 GET / (69.171.251.22) 0.44ms
+[I 20:07:22.475 NotebookApp] 302 GET / (173.252.87.38) 0.44ms
+[I 20:07:38.641 NotebookApp] Kernel restarted: 210a8f67-4684-4977-915a-3017a0950463
+[I 20:07:59.873 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 20:08:11.653 NotebookApp] Kernel restarted: 210a8f67-4684-4977-915a-3017a0950463
+[I 20:08:22.348 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 20:08:25.782 NotebookApp] Kernel started: 1abe4d6d-c638-452f-80ab-c926ad294d52
+[I 20:08:33.378 NotebookApp] Kernel interrupted: 210a8f67-4684-4977-915a-3017a0950463
+[I 20:09:02.552 NotebookApp] Saving file at /MiniVGGNet.ipynb
+[I 20:09:07.218 NotebookApp] Kernel started: bcb151d5-986b-456d-a35e-31079f9422b3
+[I 20:09:10.107 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 20:09:14.516 NotebookApp] Kernel started: ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[W 20:10:16.797 NotebookApp] Replacing stale connection: b1fa95fc-9657-42cc-b922-ba266cf11b48:A980FD7CC5EF49A8A6EC3CD4A226E8E6
+[W 20:10:17.130 NotebookApp] Replacing stale connection: a12ccb2f-0245-4fc6-8282-a0edc9223699:F0A27B7193F740989E0F35EF5B508B0C
+[I 20:10:40.585 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[I 20:10:40.656 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[I 20:10:40.727 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[I 20:10:40.796 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[I 20:10:40.864 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[I 20:10:40.938 NotebookApp] Adapting to protocol v5.3 for kernel 1abe4d6d-c638-452f-80ab-c926ad294d52
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 20:10:41.006 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[I 20:10:41.070 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 20:10:41.148 NotebookApp] Adapting to protocol v5.3 for kernel bcb151d5-986b-456d-a35e-31079f9422b3
+[I 20:10:41.223 NotebookApp] Adapting to protocol v5.3 for kernel ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 20:11:19.813 NotebookApp] Kernel restarted: 210a8f67-4684-4977-915a-3017a0950463
+[I 20:11:20.523 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+2019-11-06 20:11:27.782756: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 20:11:38.117 NotebookApp] Kernel restarted: 1abe4d6d-c638-452f-80ab-c926ad294d52
+[I 20:11:38.956 NotebookApp] Adapting to protocol v5.3 for kernel 1abe4d6d-c638-452f-80ab-c926ad294d52
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+2019-11-06 20:11:46.107306: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 20:11:46.381 NotebookApp] Kernel restarted: bcb151d5-986b-456d-a35e-31079f9422b3
+[W 20:11:46.384 NotebookApp] zmq message arrived on closed channel
+[I 20:11:47.144 NotebookApp] Adapting to protocol v5.3 for kernel bcb151d5-986b-456d-a35e-31079f9422b3
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+2019-11-06 20:11:54.379813: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 20:11:54.599 NotebookApp] Kernel restarted: ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[I 20:11:55.380 NotebookApp] Adapting to protocol v5.3 for kernel ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+2019-11-06 20:12:05.552128: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 20:12:26.912 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 20:12:44.114 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 20:13:08.159 NotebookApp] Saving file at /MiniVGGNet.ipynb
+[I 20:13:14.523 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 20:16:43.869 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 20:26:12.978 NotebookApp] Adapting to protocol v5.3 for kernel bcb151d5-986b-456d-a35e-31079f9422b3
+[I 20:26:13.048 NotebookApp] Adapting to protocol v5.3 for kernel 1abe4d6d-c638-452f-80ab-c926ad294d52
+[I 20:26:13.115 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[I 20:26:13.188 NotebookApp] Adapting to protocol v5.3 for kernel ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[W 20:27:42.979 NotebookApp] WebSocket ping timeout after 90000 ms.
+[W 20:27:43.049 NotebookApp] WebSocket ping timeout after 90000 ms.
+[W 20:27:43.116 NotebookApp] WebSocket ping timeout after 90000 ms.
+[W 20:27:43.190 NotebookApp] WebSocket ping timeout after 90001 ms.
+[E 20:27:45.404 NotebookApp] Uncaught exception GET /api/kernels/210a8f67-4684-4977-915a-3017a0950463/channels?session_id=97EECB3E63F944C58D34F6981D2A5A0C (24.91.28.129)
+    HTTPServerRequest(protocol='http', host='52.7.231.122:8888', method='GET', uri='/api/kernels/210a8f67-4684-4977-915a-3017a0950463/channels?session_id=97EECB3E63F944C58D34F6981D2A5A0C', version='HTTP/1.1', remote_ip='24.91.28.129', headers={'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8', 'Host': '52.7.231.122:8888', 'Sec-Websocket-Key': '6buV0EXdxN4BfeCq86MDIw==', 'Pragma': 'no-cache', 'Origin': 'http://52.7.231.122:8888', 'Accept-Encoding': 'gzip, deflate', 'Sec-Websocket-Version': '13', 'Cache-Control': 'no-cache', 'Upgrade': 'websocket', 'Sec-Websocket-Extensions': 'permessage-deflate; client_max_window_bits', 'Connection': 'Upgrade', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36', 'Cookie': '_xsrf=2|356c1f74|a2d54b2f957f53bc4a1e94def9cb24de|1572987863'})
+    Traceback (most recent call last):
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/tornado/web.py", line 1425, in _stack_context_handle_exception
+        raise_exc_info((type, value, traceback))
+      File "<string>", line 3, in raise_exc_info
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/tornado/stack_context.py", line 314, in wrapped
+        ret = fn(*args, **kwargs)
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/zmq/eventloop/zmqstream.py", line 191, in <lambda>
+        self.on_recv(lambda msg: callback(self, msg), copy=copy)
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/notebook/services/kernels/handlers.py", line 373, in _on_zmq_reply
+        super(ZMQChannelsHandler, self)._on_zmq_reply(stream, msg)
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/notebook/base/zmqhandlers.py", line 260, in _on_zmq_reply
+        self.write_message(msg, binary=isinstance(msg, bytes))
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/tornado/websocket.py", line 210, in write_message
+        raise WebSocketClosedError()
+    tornado.websocket.WebSocketClosedError
+[E 20:27:46.201 NotebookApp] Uncaught exception GET /api/kernels/1abe4d6d-c638-452f-80ab-c926ad294d52/channels?session_id=DB43D39E597D4BFB8014794A936A00D7 (24.91.28.129)
+    HTTPServerRequest(protocol='http', host='52.7.231.122:8888', method='GET', uri='/api/kernels/1abe4d6d-c638-452f-80ab-c926ad294d52/channels?session_id=DB43D39E597D4BFB8014794A936A00D7', version='HTTP/1.1', remote_ip='24.91.28.129', headers={'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8', 'Host': '52.7.231.122:8888', 'Sec-Websocket-Key': 'o7d12eBnKQ9EMy/+Sa5UPg==', 'Pragma': 'no-cache', 'Origin': 'http://52.7.231.122:8888', 'Accept-Encoding': 'gzip, deflate', 'Sec-Websocket-Version': '13', 'Cache-Control': 'no-cache', 'Upgrade': 'websocket', 'Sec-Websocket-Extensions': 'permessage-deflate; client_max_window_bits', 'Connection': 'Upgrade', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36', 'Cookie': '_xsrf=2|356c1f74|a2d54b2f957f53bc4a1e94def9cb24de|1572987863'})
+    Traceback (most recent call last):
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/tornado/web.py", line 1425, in _stack_context_handle_exception
+        raise_exc_info((type, value, traceback))
+      File "<string>", line 3, in raise_exc_info
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/tornado/stack_context.py", line 314, in wrapped
+        ret = fn(*args, **kwargs)
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/zmq/eventloop/zmqstream.py", line 191, in <lambda>
+        self.on_recv(lambda msg: callback(self, msg), copy=copy)
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/notebook/services/kernels/handlers.py", line 373, in _on_zmq_reply
+        super(ZMQChannelsHandler, self)._on_zmq_reply(stream, msg)
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/notebook/base/zmqhandlers.py", line 260, in _on_zmq_reply
+        self.write_message(msg, binary=isinstance(msg, bytes))
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/tornado/websocket.py", line 210, in write_message
+        raise WebSocketClosedError()
+    tornado.websocket.WebSocketClosedError
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 20:55:38.670 NotebookApp] Adapting to protocol v5.3 for kernel bcb151d5-986b-456d-a35e-31079f9422b3
+[I 20:55:40.616 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 20:55:44.050 NotebookApp] Adapting to protocol v5.3 for kernel 1abe4d6d-c638-452f-80ab-c926ad294d52
+[I 20:55:53.158 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 20:56:04.860 NotebookApp] [nb_conda_kernels] enabled, 4 kernels found
+[I 20:56:05.119 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[W 20:56:08.310 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
+[W 20:56:08.358 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using authentication. This is highly insecure and not recommended.
+[I 20:56:08.358 NotebookApp] The port 8888 is already in use, trying another port.
+[I 20:56:08.493 NotebookApp] [nb_conda] enabled
+[I 20:56:08.968 NotebookApp] [nb_anacondacloud] enabled
+[I 20:56:09.398 NotebookApp] \u2713 nbpresent HTML export ENABLED
+[W 20:56:09.398 NotebookApp] \u2717 nbpresent PDF export DISABLED: No module named 'nbbrowserpdf'
+[I 20:56:09.440 NotebookApp] Serving notebooks from local directory: /home/ec2-user/Research/NN/cs682research/jupyter
+[I 20:56:09.483 NotebookApp] 0 active kernels 
+[I 20:56:09.483 NotebookApp] The Jupyter Notebook is running at: http://[all ip addresses on your system]:8889/
+[I 20:56:09.483 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 20:56:09.484 NotebookApp] No web browser found: could not locate runnable browser.
+[I 20:56:30.336 NotebookApp] Adapting to protocol v5.3 for kernel 1abe4d6d-c638-452f-80ab-c926ad294d52
+[I 20:57:07.928 NotebookApp] Adapting to protocol v5.3 for kernel ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[I 20:57:40.516 NotebookApp] 302 GET / (24.91.28.129) 0.47ms
+[E 20:58:05.042 NotebookApp] Unhandled error in API request
+    Traceback (most recent call last):
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/notebook/base/handlers.py", line 457, in wrapper
+        result = yield gen.maybe_future(method(self, *args, **kwargs))
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/nb_conda/handlers.py", line 62, in get
+        self.finish(json.dumps(self.env_manager.env_packages(env)))
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/nb_conda/envmanager.py", line 124, in env_packages
+        "packages": [pkg_info(package) for package in data]
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/nb_conda/envmanager.py", line 124, in <listcomp>
+        "packages": [pkg_info(package) for package in data]
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/nb_conda/envmanager.py", line 16, in pkg_info
+        name, version, build = s.rsplit('-', 2)
+    AttributeError: 'dict' object has no attribute 'rsplit'
+[E 20:58:05.151 NotebookApp] {
+      "Accept-Language": "en-US,en;q=0.9,hi;q=0.8",
+      "Host": "52.7.231.122:8888",
+      "Connection": "keep-alive",
+      "Referer": "http://52.7.231.122:8888/tree",
+      "Accept": "application/json, text/javascript, */*; q=0.01",
+      "Accept-Encoding": "gzip, deflate",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36",
+      "Dnt": "1",
+      "X-Requested-With": "XMLHttpRequest",
+      "Cookie": "_xsrf=2|356c1f74|a2d54b2f957f53bc4a1e94def9cb24de|1572987863"
+    }
+[E 20:58:05.151 NotebookApp] 500 GET /conda/environments/root?_=1573073861237 (24.91.28.129) 9067.22ms referer=http://52.7.231.122:8888/tree
+[E 20:58:16.636 NotebookApp] Unhandled error in API request
+    Traceback (most recent call last):
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/notebook/base/handlers.py", line 457, in wrapper
+        result = yield gen.maybe_future(method(self, *args, **kwargs))
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/nb_conda/handlers.py", line 62, in get
+        self.finish(json.dumps(self.env_manager.env_packages(env)))
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/nb_conda/envmanager.py", line 124, in env_packages
+        "packages": [pkg_info(package) for package in data]
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/nb_conda/envmanager.py", line 124, in <listcomp>
+        "packages": [pkg_info(package) for package in data]
+      File "/home/ec2-user/anaconda3/lib/python3.5/site-packages/nb_conda/envmanager.py", line 16, in pkg_info
+        name, version, build = s.rsplit('-', 2)
+    AttributeError: 'dict' object has no attribute 'rsplit'
+[E 20:58:16.638 NotebookApp] {
+      "Accept-Language": "en-US,en;q=0.9,hi;q=0.8",
+      "Host": "52.7.231.122:8888",
+      "Connection": "keep-alive",
+      "Referer": "http://52.7.231.122:8888/tree",
+      "Accept": "application/json, text/javascript, */*; q=0.01",
+      "Accept-Encoding": "gzip, deflate",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36",
+      "Dnt": "1",
+      "X-Requested-With": "XMLHttpRequest",
+      "Cookie": "_xsrf=2|356c1f74|a2d54b2f957f53bc4a1e94def9cb24de|1572987863"
+    }
+[E 20:58:16.638 NotebookApp] 500 GET /conda/environments/cs682?_=1573073861241 (24.91.28.129) 11484.69ms referer=http://52.7.231.122:8888/tree
+[I 21:00:23.420 NotebookApp] Adapting to protocol v5.3 for kernel 1abe4d6d-c638-452f-80ab-c926ad294d52
+[I 21:00:27.365 NotebookApp] Adapting to protocol v5.3 for kernel bcb151d5-986b-456d-a35e-31079f9422b3
+[I 21:00:34.534 NotebookApp] Kernel restarted: bcb151d5-986b-456d-a35e-31079f9422b3
+[I 21:00:36.245 NotebookApp] Adapting to protocol v5.3 for kernel bcb151d5-986b-456d-a35e-31079f9422b3
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 21:00:53.398 NotebookApp] Kernel restarted: ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[I 21:00:57.770 NotebookApp] Adapting to protocol v5.3 for kernel ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 21:01:08.297 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+2019-11-06 21:01:12.219555: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 21:01:30.800 NotebookApp] Kernel restarted: 1abe4d6d-c638-452f-80ab-c926ad294d52
+[I 21:01:35.271 NotebookApp] Adapting to protocol v5.3 for kernel 1abe4d6d-c638-452f-80ab-c926ad294d52
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 21:01:57.216 NotebookApp] Kernel restarted: 1abe4d6d-c638-452f-80ab-c926ad294d52
+[W 21:01:57.227 NotebookApp] zmq message arrived on closed channel
+[I 21:02:01.244 NotebookApp] Adapting to protocol v5.3 for kernel 1abe4d6d-c638-452f-80ab-c926ad294d52
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 21:02:06.328 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 21:02:23.421 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 21:02:27.977 NotebookApp] Saving file at /MiniVGGNet.ipynb
+[I 21:03:08.998 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+2019-11-06 21:03:26.272229: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 21:04:23.412 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 21:06:54.611 NotebookApp] Saving file at /ZFNet_Demo.ipynb
