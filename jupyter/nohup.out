@@ -248,3 +248,135 @@
 2019-11-06 21:03:26.272229: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
 [I 21:04:23.412 NotebookApp] Saving file at /AlexNet_Demo.ipynb
 [I 21:06:54.611 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+2019-11-06 21:14:32.090457: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 21:15:07.872 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 23:30:46.937 NotebookApp] 302 GET / (209.17.96.218) 0.54ms
+[I 23:35:31.807 NotebookApp] 302 GET / (24.91.28.129) 0.42ms
+[I 23:35:53.712 NotebookApp] Creating new notebook in 
+[I 23:35:55.357 NotebookApp] Kernel started: 9274695d-f850-488a-a866-d913cb4fe499
+[I 23:36:02.809 NotebookApp] Adapting to protocol v5.3 for kernel 9274695d-f850-488a-a866-d913cb4fe499
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 23:36:22.774 NotebookApp] 302 GET / (24.91.28.129) 0.48ms
+[I 23:37:52.135 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 23:37:55.642 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:17:56.137 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:19:17.844 NotebookApp] 302 GET / (24.91.28.129) 0.46ms
+[I 00:19:32.860 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:19:34.248 NotebookApp] Adapting to protocol v5.3 for kernel 9274695d-f850-488a-a866-d913cb4fe499
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 00:21:34.433 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:23:34.108 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:25:34.097 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+2019-11-07 00:27:06.158440: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 00:27:34.118 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:27:45.633 NotebookApp] Kernel interrupted: 1abe4d6d-c638-452f-80ab-c926ad294d52
+[I 00:27:53.777 NotebookApp] Kernel interrupted: bcb151d5-986b-456d-a35e-31079f9422b3
+[I 00:28:00.466 NotebookApp] Kernel interrupted: ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[I 00:28:14.616 NotebookApp] Kernel interrupted: 210a8f67-4684-4977-915a-3017a0950463
+[I 00:28:23.718 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 00:28:27.503 NotebookApp] Saving file at /MiniVGGNet.ipynb
+[I 00:29:08.117 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 00:31:35.756 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:34:40.816 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:35:34.060 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:37:34.067 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:38:22.882 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 00:39:34.548 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:39:52.166 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 00:40:23.917 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 00:40:27.328 NotebookApp] Saving file at /MiniVGGNet.ipynb
+[I 00:41:07.684 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 00:41:24.193 NotebookApp] 302 GET / (24.91.28.129) 0.49ms
+[I 00:41:35.840 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:43:34.046 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:45:34.036 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:47:34.054 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:48:58.992 NotebookApp] Saving file at /utilities/research_exploration_summary.sql
+[I 00:49:06.338 NotebookApp] Saving file at /utilities/pythonDB.py
+[I 00:49:07.077 NotebookApp] Saving file at /utilities/pythonDB.py
+[I 00:49:34.338 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:49:51.705 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 00:50:00.659 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 00:50:03.856 NotebookApp] Kernel interrupted: 210a8f67-4684-4977-915a-3017a0950463
+[I 00:50:47.439 NotebookApp] Saving file at /utilities/pythonDB.py
+[I 00:50:54.567 NotebookApp] Kernel restarted: 9274695d-f850-488a-a866-d913cb4fe499
+[I 00:50:55.483 NotebookApp] Adapting to protocol v5.3 for kernel 9274695d-f850-488a-a866-d913cb4fe499
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 00:51:21.991 NotebookApp] Saving file at /utilities/pythonDB.py
+[I 00:51:27.806 NotebookApp] Saving file at /utilities/pythonDB.py
+[I 00:51:32.481 NotebookApp] Kernel restarted: 9274695d-f850-488a-a866-d913cb4fe499
+[W 00:51:32.484 NotebookApp] zmq message arrived on closed channel
+[I 00:51:33.179 NotebookApp] Adapting to protocol v5.3 for kernel 9274695d-f850-488a-a866-d913cb4fe499
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 00:51:34.026 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:51:46.131 NotebookApp] Kernel restarted: 210a8f67-4684-4977-915a-3017a0950463
+[W 00:51:46.134 NotebookApp] zmq message arrived on closed channel
+[I 00:51:46.892 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 00:51:51.671 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+2019-11-07 00:51:58.538999: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 00:53:35.421 NotebookApp] Saving file at /DemoModelPreservation.ipynb
+[I 00:53:51.665 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 00:55:37.250 NotebookApp] Saving file at /utilities/pythonDB.py
+[I 00:55:51.949 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 00:59:51.674 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 01:01:51.642 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 01:02:47.704 NotebookApp] Kernel restarted: 210a8f67-4684-4977-915a-3017a0950463
+[I 01:02:48.401 NotebookApp] Adapting to protocol v5.3 for kernel 210a8f67-4684-4977-915a-3017a0950463
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 01:02:53.457 NotebookApp] 302 GET / (24.91.28.129) 0.48ms
+[W 01:02:59.451 NotebookApp] delete /DemoModelPreservation.ipynb
+[I 01:02:59.654 NotebookApp] Kernel shutdown: 9274695d-f850-488a-a866-d913cb4fe499
+2019-11-07 01:03:12.149148: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 01:03:52.095 NotebookApp] Saving file at /LeNet5_Demo.ipynb
+[I 01:04:22.814 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 01:04:55.401 NotebookApp] Kernel restarted: 1abe4d6d-c638-452f-80ab-c926ad294d52
+[W 01:04:55.404 NotebookApp] zmq message arrived on closed channel
+[I 01:04:56.199 NotebookApp] Adapting to protocol v5.3 for kernel 1abe4d6d-c638-452f-80ab-c926ad294d52
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+2019-11-07 01:05:02.173615: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 01:06:22.806 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 01:07:07.221 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 01:08:22.808 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 01:09:08.737 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 01:09:41.147 NotebookApp] Kernel restarted: 1abe4d6d-c638-452f-80ab-c926ad294d52
+[I 01:09:41.785 NotebookApp] Adapting to protocol v5.3 for kernel 1abe4d6d-c638-452f-80ab-c926ad294d52
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+2019-11-07 01:09:48.063647: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 01:10:23.131 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 01:10:52.292 NotebookApp] Kernel restarted: ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[I 01:10:53.171 NotebookApp] Adapting to protocol v5.3 for kernel ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 01:11:07.230 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+2019-11-07 01:11:07.414643: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 01:13:07.205 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 01:13:08.143 NotebookApp] Kernel interrupted: ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[I 01:15:08.353 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 01:17:08.146 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 01:19:07.213 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 01:21:07.681 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 01:22:23.449 NotebookApp] Saving file at /AlexNet_Demo.ipynb
+[I 01:23:07.987 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 01:24:09.148 NotebookApp] Kernel restarted: ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[I 01:24:14.181 NotebookApp] Adapting to protocol v5.3 for kernel ded77f59-8a84-4bd1-a5d6-b5838e0266de
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+[I 01:24:26.707 NotebookApp] Saving file at /MiniVGGNet.ipynb
+2019-11-07 01:25:06.038884: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 01:25:08.700 NotebookApp] Saving file at /ZFNet_Demo.ipynb
+[I 01:25:10.276 NotebookApp] Kernel restarted: bcb151d5-986b-456d-a35e-31079f9422b3
+[W 01:25:10.280 NotebookApp] zmq message arrived on closed channel
+[I 01:25:11.705 NotebookApp] Adapting to protocol v5.3 for kernel bcb151d5-986b-456d-a35e-31079f9422b3
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+2019-11-07 01:25:21.552390: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 01:26:26.707 NotebookApp] Saving file at /MiniVGGNet.ipynb
+[I 01:28:26.697 NotebookApp] Saving file at /MiniVGGNet.ipynb
+[I 01:29:59.728 NotebookApp] Kernel restarted: bcb151d5-986b-456d-a35e-31079f9422b3
+[W 01:29:59.731 NotebookApp] zmq message arrived on closed channel
+[I 01:30:05.032 NotebookApp] Adapting to protocol v5.3 for kernel bcb151d5-986b-456d-a35e-31079f9422b3
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.version
+2019-11-07 01:30:20.615801: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+[I 01:30:26.678 NotebookApp] Saving file at /MiniVGGNet.ipynb
