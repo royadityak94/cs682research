@@ -1,146 +1,101 @@
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras import backend as K
+from keras import backend as K
+from tensorflow.python.keras.optimizer_v2.optimizer_v2 import OptimizerV2
+
 
 
 __all__ = ['RAdam']
 
 
-class RAdam(keras.optimizers.Optimizer):
-    """RAdam optimizer.
-    # Arguments
-        learning_rate: float >= 0. Learning rate.
-        beta_1: float, 0 < beta < 1. Generally close to 1.
-        beta_2: float, 0 < beta < 1. Generally close to 1.
-        epsilon: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
-        decay: float >= 0. Learning rate decay over each update.
-        weight_decay: float >= 0. Weight decay for each param.
-        amsgrad: boolean. Whether to apply the AMSGrad variant of this
-            algorithm from the paper "On the Convergence of Adam and
-            Beyond".
-        total_steps: int >= 0. Total number of training steps. Enable warmup by setting a positive value.
-        warmup_proportion: 0 < warmup_proportion < 1. The proportion of increasing steps.
-        min_lr: float >= 0. Minimum learning rate after warmup.
-    # References
-        - [Adam - A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980v8)
-        - [On the Convergence of Adam and Beyond](https://openreview.net/forum?id=ryQu7f-RZ)
-        - [On The Variance Of The Adaptive Learning Rate And Beyond](https://arxiv.org/pdf/1908.03265v1.pdf)
-    """
+class RAdam(OptimizerV2):
 
-    def __init__(self, learning_rate=0.001, beta_1=0.9, beta_2=0.999,
-                 epsilon=None, decay=0., weight_decay=0., amsgrad=False,
-                 total_steps=0, warmup_proportion=0.1, min_lr=0., **kwargs):
-        learning_rate = kwargs.pop('lr', learning_rate)
-        super(RAdam, self).__init__(**kwargs)
-        with K.name_scope(self.__class__.__name__):
-            self.iterations = K.variable(0, dtype='int64', name='iterations')
-            self.learning_rate = K.variable(learning_rate, name='learning_rate')
-            self.beta_1 = K.variable(beta_1, name='beta_1')
-            self.beta_2 = K.variable(beta_2, name='beta_2')
-            self.decay = K.variable(decay, name='decay')
-            self.weight_decay = K.variable(weight_decay, name='weight_decay')
-            self.total_steps = K.variable(total_steps, name='total_steps')
-            self.warmup_proportion = K.variable(warmup_proportion, name='warmup_proportion')
-            self.min_lr = K.variable(min_lr, name='min_lr')
-        if epsilon is None:
-            epsilon = K.epsilon()
-        self.epsilon = epsilon
-        self.initial_decay = decay
-        self.initial_weight_decay = weight_decay
-        self.initial_total_steps = total_steps
-        self.amsgrad = amsgrad
+    def __init__(self,
+                 learning_rate=0.001,
+                 beta_1=0.9,
+                 beta_2=0.999,
+                 epsilon=None,
+                 weight_decay=0.0,
+                 name='RAdam', **kwargs):
+        super(RAdam, self).__init__(name, **kwargs)
 
-    def get_updates(self, loss, params):
-        grads = self.get_gradients(loss, params)
-        self.updates = [K.update_add(self.iterations, 1)]
+        self._set_hyper('learning_rate', kwargs.get('lr', learning_rate))
+        self._set_hyper('beta_1', beta_1)
+        self._set_hyper('beta_2', beta_2)
+        self._set_hyper('decay', self._initial_decay)
+        self.epsilon = epsilon or tf.keras.backend.epsilon()
+        self.weight_decay = weight_decay
 
-        lr = self.lr
+    def _create_slots(self, var_list):
+        for var in var_list:
+            self.add_slot(var, 'm')
+        for var in var_list:
+            self.add_slot(var, 'v')
 
-        if self.initial_decay > 0:
-            lr = lr * (1. / (1. + self.decay * K.cast(self.iterations, K.dtype(self.decay))))
+    def _resource_apply_dense(self, grad, var):
+        var_dtype = var.dtype.base_dtype
+        lr_t = self._decayed_lr(var_dtype)
+        m = self.get_slot(var, 'm')
+        v = self.get_slot(var, 'v')
+        beta_1_t = self._get_hyper('beta_1', var_dtype)
+        beta_2_t = self._get_hyper('beta_2', var_dtype)
+        epsilon_t = tf.convert_to_tensor(self.epsilon, var_dtype)
+        t = tf.cast(self.iterations + 1, var_dtype)
 
-        t = K.cast(self.iterations, K.floatx()) + 1
+        m_t = (beta_1_t * m) + (1. - beta_1_t) * grad
+        v_t = (beta_2_t * v) + (1. - beta_2_t) * tf.square(grad)
 
-        if self.initial_total_steps > 0:
-            warmup_steps = self.total_steps * self.warmup_proportion
-            decay_steps = K.maximum(self.total_steps - warmup_steps, 1)
-            decay_rate = (self.min_lr - lr) / decay_steps
-            lr = K.switch(
-                t <= warmup_steps,
-                lr * (t / warmup_steps),
-                lr + decay_rate * K.minimum(t - warmup_steps, decay_steps),
-            )
+        beta2_t = beta_2_t ** t
+        N_sma_max = 2 / (1 - beta_2_t) - 1
+        N_sma = N_sma_max - 2 * t * beta2_t / (1 - beta2_t)
 
-        ms = [K.zeros(K.int_shape(p), dtype=K.dtype(p), name='m_' + str(i)) for (i, p) in enumerate(params)]
-        vs = [K.zeros(K.int_shape(p), dtype=K.dtype(p), name='v_' + str(i)) for (i, p) in enumerate(params)]
-
-        if self.amsgrad:
-            vhats = [K.zeros(K.int_shape(p), dtype=K.dtype(p), name='vhat_' + str(i)) for (i, p) in enumerate(params)]
+        # apply weight decay
+        if self.weight_decay != 0.:
+            p_wd = var - self.weight_decay * lr_t * var
         else:
-            vhats = [K.zeros(1, name='vhat_' + str(i)) for i in range(len(params))]
+            p_wd = None
 
-        self.weights = [self.iterations] + ms + vs + vhats
+        if p_wd is None:
+            p_ = var
+        else:
+            p_ = p_wd
 
-        beta_1_t = K.pow(self.beta_1, t)
-        beta_2_t = K.pow(self.beta_2, t)
+        def gt_path():
+            step_size = lr_t * tf.sqrt(
+                (1 - beta2_t) * (N_sma - 4) / (N_sma_max - 4) * (N_sma - 2) / N_sma * N_sma_max /
+                (N_sma_max - 2)) / (1 - beta_1_t ** t)
 
-        sma_inf = 2.0 / (1.0 - self.beta_2) - 1.0
-        sma_t = sma_inf - 2.0 * t * beta_2_t / (1.0 - beta_2_t)
+            denom = tf.sqrt(v_t) + epsilon_t
+            p_t = p_ - step_size * (m_t / denom)
 
-        for p, g, m, v, vhat in zip(params, grads, ms, vs, vhats):
-            m_t = (self.beta_1 * m) + (1. - self.beta_1) * g
-            v_t = (self.beta_2 * v) + (1. - self.beta_2) * K.square(g)
+            return p_t
 
-            m_corr_t = m_t / (1.0 - beta_1_t)
-            if self.amsgrad:
-                vhat_t = K.maximum(vhat, v_t)
-                v_corr_t = K.sqrt(vhat_t / (1.0 - beta_2_t))
-                self.updates.append(K.update(vhat, vhat_t))
-            else:
-                v_corr_t = K.sqrt(v_t / (1.0 - beta_2_t))
+        def lt_path():
+            step_size = lr_t / (1 - beta_1_t ** t)
+            p_t = p_ - step_size * m_t
 
-            r_t = K.sqrt((sma_t - 4.0) / (sma_inf - 4.0) *
-                         (sma_t - 2.0) / (sma_inf - 2.0) *
-                         sma_inf / sma_t)
+            return p_t
 
-            p_t = K.switch(sma_t >= 5, r_t * m_corr_t / (v_corr_t + self.epsilon), m_corr_t)
+        p_t = tf.cond(N_sma > 5, gt_path, lt_path)
 
-            if self.initial_weight_decay > 0:
-                p_t += self.weight_decay * p
+        m_t = tf.compat.v1.assign(m, m_t)
+        v_t = tf.compat.v1.assign(v, v_t)
 
-            p_t = p - lr * p_t
+        with tf.control_dependencies([m_t, v_t]):
+            param_update = tf.compat.v1.assign(var, p_t)
+            return tf.group(*[param_update, m_t, v_t])
 
-            self.updates.append(K.update(m, m_t))
-            self.updates.append(K.update(v, v_t))
-            new_p = p_t
-
-            # Apply constraints.
-            if getattr(p, 'constraint', None) is not None:
-                new_p = p.constraint(new_p)
-
-            self.updates.append(K.update(p, new_p))
-        return self.updates
-
-    @property
-    def lr(self):
-        return self.learning_rate
-
-    @lr.setter
-    def lr(self, learning_rate):
-        self.learning_rate = learning_rate
+    def _resource_apply_sparse(self, grad, handle, indices):
+        raise NotImplementedError("Sparse data is not supported yet")
 
     def get_config(self):
-        config = {
-            'learning_rate': float(K.get_value(self.learning_rate)),
-            'beta_1': float(K.get_value(self.beta_1)),
-            'beta_2': float(K.get_value(self.beta_2)),
-            'decay': float(K.get_value(self.decay)),
-            'weight_decay': float(K.get_value(self.weight_decay)),
+        config = super(RAdam, self).get_config()
+        config.update({
+            'learning_rate': self._serialize_hyperparameter('learning_rate'),
+            'decay': self._serialize_hyperparameter('decay'),
+            'beta_1': self._serialize_hyperparameter('beta_1'),
+            'beta_2': self._serialize_hyperparameter('beta_2'),
             'epsilon': self.epsilon,
-            'amsgrad': self.amsgrad,
-            'total_steps': float(K.get_value(self.total_steps)),
-            'warmup_proportion': float(K.get_value(self.warmup_proportion)),
-            'min_lr': float(K.get_value(self.min_lr)),
-        }
-        base_config = super(RAdam, self).get_config()
-        return dict(list(base_config.items()) + list(config.items()))
+            'weight_decay': self.weight_decay,
+        })
+        return config
