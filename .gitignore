@@ -1,3 +1,4 @@
+:$
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -106,3 +107,5 @@ venv.bak/
 # project related
 saved_models
 saved_models/
+*.txt
+.txt
