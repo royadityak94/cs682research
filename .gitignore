@@ -103,9 +103,18 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-
+__pycache__
+*__pycache__
 # project related
 saved_models
 saved_models/
 *.txt
 .txt
+saved_numpy_data/
+saved_numpy_data
+nohup.out
+saved_models.zip
+*.zip
+*.out
+*.npy
+*.png
