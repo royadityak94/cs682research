@@ -6,10 +6,15 @@ from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.callbacks import CSVLogger
 from tensorflow.python.keras import metrics
 import matplotlib.pyplot as plt
-from rectified_adam import RAdam
+from utilities.rectified_adam import RAdam
 import numpy as np
 import sys
 from utilities.pythonDB import writeToDB, deleteExistingPrimaryKeyDB
+
+global MAX_EPOCHS, MAX_BATCH_SIZE, architecture, label, keywords
+MAX_EPOCHS, MAX_BATCH_SIZE = 15, 1024
+architecture = 'ZFNet'
+label, keywords = 'milestone-experiments2', 'benchmark_testing'
 
 def get_random_data(data1, data2, low, high, max_samples=100):
     _, H1, W1, C1 = data1.shape
@@ -34,51 +39,60 @@ class MetricsAfterEachEpoch(tf.keras.callbacks.Callback):
         self.loss.append(scores.get('mean_squared_error'))
         return
     
-def LeNet5Classifier(activation_func):
-    # Creating a LeNet5 Classifier
+def model_extractor(activation_func):
+    # Creating a ZFNet Classifier
     model = Sequential()
 
     #Instantiating Layer 1
-    model.add(Conv2D(6, kernel_size=(5, 5), strides=(1, 1), activation=activation_func, padding='valid'))
-    model.add(AveragePooling2D(pool_size=(2, 2), strides=(2, 2), name='pool1'))
+    model.add(Conv2D(96, kernel_size=(7, 7), strides=(2, 2), activation=activation_func, padding='same'))
+    model.add(MaxPool2D(pool_size=(3, 3), strides=(2, 2), name='pool1'))
 
     # #Instantiating Layer 2
-    model.add(Conv2D(16, kernel_size=(5, 5), strides=(1, 1), activation=activation_func, padding='valid'))
-    model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2), name='pool2'))
+    model.add(Conv2D(256, kernel_size=(5, 5), strides=(2, 2), activation=activation_func, padding='same'))
+    model.add(MaxPool2D(pool_size=(2, 2), strides=(1, 1), name='pool2'))
 
     # #Instantiating Layer 3
-    model.add(Conv2D(120, kernel_size=(5, 5), strides=(1, 1), activation=activation_func, padding='valid'))
+    model.add(Conv2D(384, kernel_size=(3, 3), strides=(1, 1), activation=activation_func, padding='same'))
+
+    # #Instantiating Layer 4
+    model.add(Conv2D(384, kernel_size=(3, 3), strides=(1, 1), activation=activation_func, padding='same'))
+
+    # #Instantiating Layer 5
+    model.add(Conv2D(256, kernel_size=(3, 3), strides=(1, 1), activation=activation_func, padding='same'))
+    model.add(MaxPool2D(pool_size=(3, 3), strides=(2, 2), name='pool3'))
 
     model.add(Flatten())
 
-    #Instantiating Layer 4
-    model.add(Dense(84, activation=activation_func)) 
+    #Instantiating Layer 6
+    model.add(Dense(4096, activation=activation_func)) 
+
+    # #Instantiating Layer 8
+    model.add(Dense(4096, activation=activation_func))
 
     #Output Layer
     model.add(Dense(10, activation='softmax'))
+    
     return model
 
-
-def LeNet5Evaluator(curr_optimizer, activation_func, label=None, curr_epochs=25):
-    model = LeNet5Classifier(activation_func)
+def diff_optimizer(curr_optimizer, activation_func, label=None, curr_epochs=MAX_EPOCHS):
+    model = model_extractor(activation_func)
     model.compile(loss="categorical_crossentropy", optimizer=curr_optimizer, validation_data=(x_val, y_val),
                   metrics=["accuracy", "mae", "mse"])
-    history = model.fit(x_train, y_train, epochs=curr_epochs, callbacks=[MetricsAfterEachEpoch()], batch_size=2048).history
-    score = model.evaluate(x_test, y_test, batch_size=512)
+    history = model.fit(x_train, y_train, epochs=curr_epochs, batch_size=1024).history
+    score = model.evaluate(x_test, y_test, batch_size=MAX_BATCH_SIZE)
+    
     #Saving the model
     if label == 'RAdam':
-        model.save("../saved_models/{}_{}_{}.hdf5".format('RAdam', activation_func, "LeNet5"))
+        model.save("../../saved_models/{}_{}_{}.hdf5".format('RAdam', activation_func, architecture))
     else: 
-        model.save("../saved_models/{}_{}_{}.hdf5".format(curr_optimizer, activation_func, "LeNet5"))
+        model.save("../../saved_models/{}_{}_{}.hdf5".format(curr_optimizer, activation_func, architecture))
     return score, history
 
 
 if __name__ == '__main__':
-    MAX_TRAINING = 25000
-    MAX_VALIDATION = 5000
+    MAX_TRAINING = 20000
+    MAX_VALIDATION = 2000
     MAX_TESTING = 4000
-    correct_class = {1 : 'airplane', 2 : 'automobile', 3 : 'bird', 4 : 'cat', 5 : \
-                     'deer', 6 : 'dog', 7 : 'frog', 8 : 'horse', 9 : 'ship', 10 : 'truck'}
     
     cifar = tf.keras.datasets.cifar10 
     (x_train, y_train), (x_test, y_test) = cifar.load_data()
@@ -99,33 +113,24 @@ if __name__ == '__main__':
     print ("Number of Test Samples: X={}, Y={}".format(x_test.shape[0], y_test.shape[0]))
     
     testing_optimizers = ['RAdam', 'Adam', 'NAdam', 'SGD']
-    testing_activations = ['tanh', 'relu']
+    testing_activations = ['tanh', 'relu', 'selu']
 
     for optimizer in testing_optimizers:
         for activation in testing_activations:
             loss, accuracy, mae, mse = {}, {}, {}, {}
             train_loss_dict, train_accuracy_dict, train_mae_dict, train_mse_dict = {}, {}, {}, {}
-
+            
             if optimizer == 'RAdam':
-                score_returned, history = LeNet5Evaluator(RAdam(lr=0.0005), activation, label='RAdam')
+                score_returned, history = diff_optimizer(RAdam(lr=0.005), activation, label='RAdam')
             else:
-                score_returned, history = LeNet5Evaluator(optimizer, activation)
+                score_returned, history = diff_optimizer(optimizer, activation)
 
-            #Test Side Stats
-            loss[(optimizer, activation)] = score_returned[0]
-            accuracy[(optimizer, activation)] = score_returned[1]
-            mae[(optimizer, activation)] = score_returned[2]
-            mse[(optimizer, activation)] = score_returned[3]
-
-            #Training Side Stats
-            train_loss_dict[(optimizer, activation)] = history.get('loss')
-            train_accuracy_dict[(optimizer, activation)] = history.get('acc')
-            train_mae_dict[(optimizer, activation)] = history.get('mean_absolute_error')
-            train_mse_dict[(optimizer, activation)] = history.get('mean_squared_error')
-
-            bg = (loss, accuracy, mae, mse, train_loss_dict, train_accuracy_dict, train_mae_dict, train_mse_dict)
+            
+            bg = (score_returned[0], score_returned[1], score_returned[2], score_returned[3], history.get('loss'),\
+              history.get('accuracy'), history.get('mae'), history.get('mae'))
+        
             #Delete Existing Primary Keys and then write to DB
-            deleteExistingPrimaryKeyDB(optimizer, activation, 'LeNet5', 'milestone-experiments', 'benchmark_testing')
-            writeToDB(optimizer, activation, 'LeNet5', bg, 'milestone-experiments', 'benchmark_testing')
+            deleteExistingPrimaryKeyDB(optimizer, activation, architecture, label, keywords)
+            writeToDB(optimizer, activation, architecture, bg, label, keywords)
     
-    print ("Final: Loss={}, Accuracy={}".format(loss, accuracy))
+    print ("Completed Execution for architecture={}".format(architecture))
