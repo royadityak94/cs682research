@@ -118,3 +118,4 @@ saved_models.zip
 *.out
 *.npy
 *.png
+*.tar.gz

@@ -91,7 +91,7 @@ for optimizer in testing_optimizers:
             score_returned, history = ResNetEvaluator(RAdam(lr=0.003), x_train, y_test, activation, label='RAdam')
         else:
             score_returned, history = ResNetEvaluator(optimizer, x_train, y_test, activation)
-                
+        
         bg = (score_returned[0], score_returned[1], score_returned[2], score_returned[3], history.get('loss'),\
               history.get('accuracy'), history.get('mae'), history.get('mae'))
         #Delete Existing Primary Keys and then write to DB
