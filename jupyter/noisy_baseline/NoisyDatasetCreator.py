@@ -4,7 +4,7 @@ from utilities.data_preprocessors import get_random_data, fetch_selected_data_10
 from utilities.build_augmentor import get_random_shuffle_set
 
 def create_custom_noisy_set(x_train_i, y_train_i):
-    ratio1 = {'mixed_transformations':.45}
+    ratio1 = {'mixed_transformations':1}
     ratio2 = {'random_image_eraser':1}
     ratio3 = {"add_gaussian_noise": 0.2, "add_sp_noise": 0.4, "add_poisson_noise":.2, 'add_multiplicative_noise':.2}
     
@@ -32,10 +32,6 @@ if __name__ == '__main__':
     np.save('noisy_dataset/noisy/cifar_10_y_train.npy', y_train_noisy)
     np.save('noisy_dataset/noisy/cifar_10_x_test.npy', x_test_noisy)
     np.save('noisy_dataset/noisy/cifar_10_y_test.npy', y_test_noisy)
-    
-    
-    
-    
     
     # cifar100 = tf.keras.datasets.cifar100
     # (x_train_o, y_train_o), (x_test_o, y_test_o) = cifar100.load_data()

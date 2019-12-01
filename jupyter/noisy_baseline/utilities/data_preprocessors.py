@@ -143,7 +143,7 @@ def fetch_selected_data_10(x_data, y_data):
         idx = y_data[i][0]
         if idx not in keep_list:
             continue
-        new_x_data[curr_x], new_y_data[curr_y]  = x_data[i], np.array([1])
+        new_x_data[curr_x], new_y_data[curr_y]  = x_data[i], y_data[i]
         curr_x, curr_y = curr_x+1, curr_y+1
     return new_x_data[:curr_x], new_y_data[:curr_y]
 

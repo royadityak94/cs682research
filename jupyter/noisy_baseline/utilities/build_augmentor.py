@@ -45,7 +45,7 @@ def get_random_shuffle_set(data1, data2, ratios=None):
     
     shuffles = np.random.randint(0, N, new_N)
     low = 0
-    x_train_ret, y_train_ret, img_idx  = np.zeros((new_N, H1, W1, C1)), np.zeros((new_N, 10)), 0
+    x_train_ret, y_train_ret, img_idx  = np.zeros((new_N, H1, W1, C1)), np.zeros((new_N, 1)), 0
 
     for key in ratios.keys():
         high = int(ratios.get(key) * N)
