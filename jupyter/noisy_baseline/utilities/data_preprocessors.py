@@ -175,3 +175,19 @@ class MetricsAfterEachEpoch(tf.keras.callbacks.Callback):
         self.mae.append(scores.get('mean_absolute_error'))
         self.loss.append(scores.get('mean_squared_error'))
         return
+       
+def compute_top_k_accuracy(model, x_test, y_test, k=1):
+    all_scores = model.predict_proba(x_test)
+    total, correct_prediction = 0, 0
+    for scores in all_scores:
+        if y_test[total] in np.argsort(scores)[::-1][:k]: 
+            correct_prediction += 1
+        total += 1
+    return (correct_prediction/total)
+
+def averaged_top_k_accuracy(model, x_test, y_test, k=1, epochs=1, batchsize=2000):
+    sum_accuracy = 0.0
+    for curr_epoch in range(epochs):
+        x_test_sample, y_test_sample = get_random_data(x_test, y_test, 0, x_test.shape[0], batchsize)
+        sum_accuracy += compute_top_k_accuracy(model, x_test_sample, y_test_sample, k=k)
+    return (sum_accuracy/epochs)
