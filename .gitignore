@@ -119,3 +119,5 @@ saved_models.zip
 *.npy
 *.png
 *.tar.gz
+saved_models_noisy
+saved_models_noisy/

@@ -25,3 +25,19 @@ and label='{}' and keywords='{}'".format(optimizer, activation, architecture, la
     db_conn.close()
     print ("Successfully deleted the existing primary key...")
     return
+
+def countExistingRecords(bg):
+    architecture, label, optimizer, activation = bg
+    db_conn = mysql.connector.connect(host="localhost", user="root", passwd="1234",  database='cs682research')
+    db_cursor = db_conn.cursor(buffered=True)
+    count_query = "select count(*) from research_exploration WHERE architecture='{}' and label='{}' \
+    and optimizer='{}' and activation='{}'".format(architecture, label, optimizer, activation)
+    db_cursor.execute(count_query)
+    records = db_cursor.fetchall()[0][0]
+    db_cursor.close()
+    db_conn.close()
+    return records
+
+def recordsExists(bg):
+    present_count = countExistingRecords(bg)
+    return True if present_count > 0 else False

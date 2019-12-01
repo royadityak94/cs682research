@@ -4,6 +4,7 @@ from skimage.transform import swirl, AffineTransform, warp
 from skimage.util import random_noise
 from PIL import Image
 from skimage import exposure
+import tensorflow as tf
 
 def flip_vertical_np(im):
     return np.flipud(im)
@@ -123,7 +124,6 @@ def gamma_correction(im):
     gamma = np.random.uniform(.25, .65)
     return exposure.adjust_gamma(im, gamma, gain=0.9).astype(np.uint8)
 
-
 def get_random_data(data1, data2, low, high, max_samples=100):
     _, H1, W1, C1 = data1.shape
     _, N = data2.shape
@@ -163,3 +163,15 @@ def fetch_selected_data_100(x_data, y_data):
             new_x_data[curr_x], new_y_data[curr_y]  = x_data[i], np.array([9])
         curr_x, curr_y = curr_x+1, curr_y+1
     return new_x_data[:curr_x], new_y_data[:curr_y]
+
+class MetricsAfterEachEpoch(tf.keras.callbacks.Callback):
+    def on_train_begin(self, scores={}):
+        self.loss, self.accuracy, self.mae, self.mse = [], [], [], []
+    def on_train_end(self, logs={}):
+        return self.loss, self.accuracy, self.mae, self.loss
+    def on_epoch_end(self, epoch, scores):
+        self.loss.append(scores.get('loss'))
+        self.accuracy.append(scores.get('acc'))
+        self.mae.append(scores.get('mean_absolute_error'))
+        self.loss.append(scores.get('mean_squared_error'))
+        return

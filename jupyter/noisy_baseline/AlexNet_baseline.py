@@ -9,38 +9,50 @@ import matplotlib.pyplot as plt
 from utilities.rectified_adam import RAdam
 import numpy as np
 import sys
-from utilities.pythonDB import writeToDB, deleteExistingPrimaryKeyDB
+from utilities.pythonDB import writeToDB, deleteExistingPrimaryKeyDB, recordsExists
 from utilities.data_preprocessors import get_random_data, MetricsAfterEachEpoch
 
 global MAX_EPOCHS, MAX_BATCH_SIZE, architecture, label, keywords
-MAX_EPOCHS, MAX_BATCH_SIZE = 15, 1024
-architecture = 'LeNet5'
+MAX_EPOCHS, MAX_BATCH_SIZE = 15, 512
+architecture = 'AlexNet'
 label, keywords = 'noisy_bl-experiments', 'benchmark_testing'
     
 def model_extractor(activation_func):
-    # Creating a LeNet5 Classifier
+    # Creating an AlexNet Classifier
     model = Sequential()
 
     #Instantiating Layer 1
-    model.add(Conv2D(6, kernel_size=(5, 5), strides=(1, 1), activation=activation_func, padding='valid'))
-    model.add(AveragePooling2D(pool_size=(2, 2), strides=(2, 2), name='pool1'))
+    model.add(Conv2D(48, kernel_size=(3, 3), strides=(1, 1), activation=activation_func, padding='valid'))
+    model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
 
     # #Instantiating Layer 2
-    model.add(Conv2D(16, kernel_size=(5, 5), strides=(1, 1), activation=activation_func, padding='valid'))
-    model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2), name='pool2'))
+    model.add(Conv2D(96, kernel_size=(3, 3), strides=(1, 1), activation=activation_func, padding='same'))
+    model.add(MaxPool2D(pool_size=(3, 3), strides=(2, 2)))
 
     # #Instantiating Layer 3
-    model.add(Conv2D(120, kernel_size=(5, 5), strides=(1, 1), activation=activation_func, padding='valid'))
+    model.add(Conv2D(192, kernel_size=(3, 3), strides=(1, 1), activation=activation_func, padding='same'))
+
+    # #Instantiating Layer 4
+    model.add(Conv2D(192, kernel_size=(3, 3), strides=(1, 1), activation=activation_func, padding='same'))
+    model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
+
+    # #Instantiating Layer 5
+    model.add(Conv2D(256, kernel_size=(3, 3), strides=(1, 1), activation=activation_func, padding='same'))
+    model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
 
     model.add(Flatten())
 
-    #Instantiating Layer 4
-    model.add(Dense(84, activation=activation_func)) 
+    #Instantiating Layer 6
+    model.add(Dense(512, activation=activation_func)) 
+    model.add(Dropout(0.4))
+
+    # #Instantiating Layer 8
+    model.add(Dense(256, activation=activation_func))
+    model.add(Dropout(0.4))
 
     #Output Layer
     model.add(Dense(10, activation='softmax'))
     return model
-
 
 def diff_optimizer(curr_optimizer, activation_func, label=None, curr_epochs=MAX_EPOCHS):
     model = model_extractor(activation_func)
@@ -56,11 +68,10 @@ def diff_optimizer(curr_optimizer, activation_func, label=None, curr_epochs=MAX_
         model.save("../../saved_models_noisy/{}_{}_{}.hdf5".format(curr_optimizer, activation_func, architecture))
     return score, history
 
-
 if __name__ == '__main__':
     MAX_TRAINING = 20000
     MAX_VALIDATION = 2000
-    MAX_TESTING = 4000
+    MAX_TESTING = 2000
     
     base = 'noisy_dataset/noisy/cifar_10_{}.npy'
     x_train_max, y_train = np.load(base.format('x_train')), np.load(base.format('y_train'))
@@ -81,6 +92,11 @@ if __name__ == '__main__':
 
     for optimizer in testing_optimizers:
         for activation in testing_activations:
+            
+            if recordsExists((architecture, label, optimizer, activation)):
+                print ("Continuing for Optimizer = {} and Activation = {}".format(optimizer, activation))
+                continue
+                
             loss, accuracy, mae, mse = {}, {}, {}, {}
             train_loss_dict, train_accuracy_dict, train_mae_dict, train_mse_dict = {}, {}, {}, {}
             
