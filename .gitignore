@@ -121,7 +121,5 @@ saved_models.zip
 *.tar.gz
 saved_models_noisy
 saved_models_noisy/
-noisy_advanced
-noisy_advanced/
 saved_models_advanced
 saved_models_advanced/
