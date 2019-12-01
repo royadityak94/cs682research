@@ -57,8 +57,8 @@ if __name__ == '__main__':
     nb_classes = y_test[0].shape[0]
 
     for activation in testing_activations:
-        model = ResNet18((img_rows, img_cols, img_channels), nb_classes, activation)
         for optimizer in testing_optimizers:
+            model = ResNet18((img_rows, img_cols, img_channels), nb_classes, activation)
 
             if recordsExists((architecture, label, optimizer, activation)):
                 print ("Continuing for Optimizer = {} and Activation = {}".format(optimizer, activation))
