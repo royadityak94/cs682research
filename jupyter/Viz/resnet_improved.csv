@@ -1,0 +1,13 @@
+optimizer,activation,architecture,Accuracy_Change
+Adam,relu,ResNet18,0.2866
+Adam,selu,ResNet18,0.1482
+Adam,tanh,ResNet18,0.1414
+NAdam,relu,ResNet18,0.2326
+NAdam,selu,ResNet18,0.0782
+NAdam,tanh,ResNet18,0.1214
+RAdam,relu,ResNet18,0.233
+RAdam,selu,ResNet18,0.1068
+RAdam,tanh,ResNet18,0.1936
+SGD,relu,ResNet18,0.3742
+SGD,selu,ResNet18,0.2232
+SGD,tanh,ResNet18,0.1444

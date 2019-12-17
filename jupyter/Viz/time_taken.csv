@@ -1,0 +1,6 @@
+architecture,time_taken
+LeNet5,834
+AlexNet,971.7
+MiniVGGNet,969.7961
+ZFNet,1083.57
+ResNet18,1202.28
